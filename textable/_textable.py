@@ -53,7 +53,7 @@ def write(data: DataT, outfile: str, *, writemode: str = "w", **kwargs) -> None:
 def _get_num_columns(data: DataT) -> int:
     n_columns = sorted({len(row) for row in data})
     if len(n_columns) != 1:
-        found = ", ".join(n_columns)
+        found = ", ".join(str(num) for num in n_columns)
         raise ValueError(
             f"All rows must have the same number of columns. Found: {found}."
         )
@@ -77,8 +77,8 @@ def _create_table_rows(
     ROW_END = r" \\"
 
     def create_row(row: typing.List[typing.Any], fmt=fmt):
-        row = " & ".join(f"{elem:{fmt}}" for elem in row)
-        return row + ROW_END
+        text = " & ".join(f"{elem:{fmt}}" for elem in row)
+        return text + ROW_END
 
     headstr = create_row(header, fmt="") if header is not None else ""
     rows = []
