@@ -49,7 +49,6 @@ def tostring(
         The latex table as formatted string.
     """
     n_columns = _get_num_columns(data)
-    _check_to_string(data)
     content = _create_table_rows(
         data,
         header=header,
@@ -97,13 +96,6 @@ def _get_num_columns(data: DataT) -> int:
             f"All rows must have the same number of columns. Found: {found}."
         )
     return n_columns[0]
-
-
-def _check_to_string(data: DataT) -> None:
-    """Ensure every element in the python data can be converted to string."""
-    for row in data:
-        for elem in row:
-            str(elem)
 
 
 def _create_table_rows(
