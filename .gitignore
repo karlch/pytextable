@@ -1,0 +1,17 @@
+**/__pycache__/
+*.egg-info
+*.cache
+*.coverage
+*.hypothesis
+*.tox
+coverage/*
+build*
+dist*
+install_log.txt
+**/*.so
+TODO
+.pytest_cache
+.venv
+**/.doctrees
+**/.mypy_cache
+**/.dmypy.json
