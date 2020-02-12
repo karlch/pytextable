@@ -27,6 +27,22 @@ def test_wrap_tex_environment_options():
     assert _textable._wrap_tex_environment("tabular", text, options=options) == expected
 
 
+@pytest.mark.parametrize("data", [[[1, 2]], [[1, 2, 3]]])
+def test_n_columns(data):
+    assert len(data[0]) == _textable._get_num_columns(data)
+
+
+def test_fail_columns():
+    data = [
+        (1, 2, 3),
+        (1, 2, 3),
+        (1, 2, 3),
+        (1, 2, 3, 4),
+    ]
+    with pytest.raises(ValueError, match="All rows must have the same number"):
+        _textable._get_num_columns(data)
+
+
 @pytest.mark.parametrize(
     "alignment, n_columns, expected",
     (

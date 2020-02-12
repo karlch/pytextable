@@ -12,6 +12,10 @@ import textable
 DATA = [[1.2346, 1, 1.2346], [1.2346, 1.2346, 1.2346], [1.2346, 1.2346, 1.2346]]
 
 
+def midrule_for_one(rows, _last_rows):
+    return 1 in rows
+
+
 FILE_TO_KWARGS = {
     "default.tex": {},
     "threedigit.tex": {"fmt": ".3f"},
@@ -25,6 +29,8 @@ FILE_TO_KWARGS = {
         "booktabs": False,
         "header": ("first", "second", "third"),
     },
+    "midrule_for_one.tex": {"midrule_condition": midrule_for_one},
+    "nocentering.tex": {"centering": False}
 }
 
 
