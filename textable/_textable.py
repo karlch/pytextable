@@ -5,7 +5,13 @@
 import typing
 
 
-DataT = typing.List[typing.List[typing.Any]]
+RowT = typing.List[typing.Any]
+DataT = typing.List[RowT]
+MidruleCallbackT = typing.Callable[[RowT, RowT], bool]
+
+
+def _no_extra_midrule(row: RowT, last_row: RowT) -> bool:
+    return False
 
 
 def tostring(
@@ -20,7 +26,7 @@ def tostring(
     fmt: str = "",
     numspace: int = 4,
     booktabs: bool = True,
-    midrule_condition=lambda _row, _last_row: False,
+    midrule_condition: MidruleCallbackT = _no_extra_midrule,
 ) -> str:
     n_columns = _get_num_columns(data)
     _check_to_string(data)
@@ -45,7 +51,9 @@ def tostring(
     return content
 
 
-def write(data: DataT, outfile: str, *, writemode: str = "w", **kwargs) -> None:
+def write(
+    data: DataT, outfile: str, *, writemode: str = "w", **kwargs: typing.Any
+) -> None:
     with open(outfile, writemode) as f:
         f.write(tostring(data, **kwargs))
 
@@ -60,7 +68,7 @@ def _get_num_columns(data: DataT) -> int:
     return n_columns[0]
 
 
-def _check_to_string(data: DataT):
+def _check_to_string(data: DataT) -> None:
     for row in data:
         for elem in row:
             str(elem)
@@ -72,11 +80,11 @@ def _create_table_rows(
     header: typing.List[str] = None,
     fmt: str = "",
     booktabs: bool = True,
-    midrule_condition=lambda row: False,
+    midrule_condition: MidruleCallbackT = _no_extra_midrule,
 ) -> str:
     ROW_END = r" \\"
 
-    def create_row(row: typing.List[typing.Any], fmt=fmt):
+    def create_row(row: typing.List[typing.Any], fmt: str = fmt) -> str:
         text = " & ".join(f"{elem:{fmt}}" for elem in row)
         return text + ROW_END
 
@@ -118,7 +126,7 @@ def _wrap_tex_environment(
     return f"{begin}\n{content}\n{end}\n"
 
 
-def _table_alignment(alignment: str, n_columns: int):
+def _table_alignment(alignment: str, n_columns: int) -> str:
     if not alignment:
         return "c" * n_columns
 
