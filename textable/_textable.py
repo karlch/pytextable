@@ -6,8 +6,9 @@ import functools
 import typing
 
 
-RowT = typing.List[typing.Any]
-DataT = typing.List[RowT]
+RowT = typing.Sequence[typing.Any]
+DataT = typing.Sequence[RowT]
+HeaderT = typing.Sequence[str]
 MidruleCallbackT = typing.Callable[[RowT, RowT], bool]
 
 
@@ -19,7 +20,7 @@ def _no_extra_midrule(_row: RowT, _last_row: RowT) -> bool:
 def tostring(
     data: DataT,
     *,
-    header: typing.List[str] = None,
+    header: HeaderT = None,
     table: bool = True,
     centering: bool = True,
     caption: str = "",
@@ -101,7 +102,7 @@ def _get_num_columns(data: DataT) -> int:
 def _create_table_rows(
     data: DataT,
     *,
-    header: typing.List[str] = None,
+    header: HeaderT = None,
     fmt: str = "",
     booktabs: bool = True,
     midrule_condition: MidruleCallbackT = _no_extra_midrule,
@@ -117,7 +118,7 @@ def _create_table_rows(
     """
     row_end = r" \\"
 
-    def create_row(row: typing.List[typing.Any], fmt: str = fmt) -> str:
+    def create_row(row: RowT, fmt: str = fmt) -> str:
         text = " & ".join(f"{elem:{fmt}}" for elem in row)
         return text + row_end
 
