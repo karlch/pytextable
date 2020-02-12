@@ -38,4 +38,18 @@ setuptools.setup(
     license=read_from_init("license"),
     keywords=["latex", "tables", "data"],
     zip_safe=True,
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "Intended Audience :: Science/Research",
+        "License :: OSI Approved :: GNU General Public License v3 or later " "(GPLv3+)",
+        "Natural Language :: English",
+        "Operating System :: POSIX :: Linux",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Topic :: Text Processing",
+        "Topic :: Text Processing :: Markup :: LaTeX",
+    ],
 )
