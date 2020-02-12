@@ -1,0 +1,52 @@
+# vim: ft=dosini fileencoding=utf-8:
+[MASTER]
+load-plugins=pylint.extensions.emptystring,
+             pylint.extensions.check_elif,
+             pylint.extensions.overlapping_exceptions,
+
+[MESSAGES CONTROL]
+enable=all
+disable=no-self-use,
+        fixme,
+        cyclic-import,
+        global-statement,
+        locally-disabled,
+        too-many-ancestors,
+        too-few-public-methods,
+        blacklisted-name,
+        file-ignored,
+        wrong-import-position,
+        ungrouped-imports,
+        suppressed-message,
+        arguments-differ,
+        duplicate-code,
+        bad-continuation,
+        import-outside-toplevel,
+
+[BASIC]
+function-rgx=[a-z_][a-z0-9_]{2,50}$
+const-rgx=[A-Za-z_][A-Za-z0-9_]{0,30}$
+method-rgx=[a-z_][A-Za-z0-9_]{2,50}$
+attr-rgx=[a-z_][a-z0-9_]{0,30}$
+argument-rgx=[a-z_][a-z0-9_]{0,30}$
+variable-rgx=[a-z_][a-z0-9_]{0,30}$
+docstring-min-length=3
+no-docstring-rgx=(^__|^main$|^test_|decorator|inside|^_on)
+
+[FORMAT]
+max-line-length=88
+max-module-lines=1000
+ignore-long-lines=(<?https?://|^# Copyright 201\d|# (pylint|flake8): disable=)
+expected-line-ending-format=LF
+
+[SIMILARITIES]
+min-similarity-lines=4
+
+[VARIABLES]
+dummy-variables-rgx=_.*
+
+[DESIGN]
+max-args=10
+
+[CLASSES]
+valid-metaclass-classmethod-first-arg=cls
