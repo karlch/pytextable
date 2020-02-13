@@ -33,18 +33,52 @@ def tostring(
 ) -> str:
     r"""Convert python data to a valid tex table string.
 
+    This is the heart of pytextable and does all the heavy lifting. You must pass the
+    data argument which containts the rows and columns of the table to create. The other
+    keyword-only arguments allow additional formatting and customization.
+
     Args:
-        data: List of lists containing the rows and columns of the table.
-        header: Header of every column as valid string if any.
+        data: Sequence of sequences containing the rows and columns of the table. Note
+            that the number of columns in each row must match.
+        header: Column header to add as sequence of strings. The number of elements must
+            match the number of columns of your data.
         table: Add a surrounding table environment to the latex tabular.
-        centering: Add a \centering statement to the table.
-        caption: Add this caption to the table.
-        label: Add this label to the table.
-        alignment: Simplified string converted to the full table alignment.
-        fmt: Format string to apply to every element in the row. Example: '.3g'.
-        indentation: Number of spaces used for indentation.
+        centering: Add a \centering statement to the table. This is only valid if
+            ``table=True``.
+        caption: Add this caption to the table. This is only valid if ``table=True``.
+        label: Add this label to the table. This is only valid if ``table=True``.
+        alignment: String converted to the full table alignment. Examples:
+
+            >>> _table_alignment("", 3)  # The default
+            "ccc"
+
+            >>> _table_alignment("l", 3)  # Left-align everything instead
+            "lll"
+
+            >>> _table_alignment("l|", 3)  # Left-align and add separators in the table
+            "l|l|l"
+
+            >>> _table_alignment("|l|", 3)  # Left-align and add separators everywhere
+            "|l|l|l|"
+
+            >>> _table_alignment("llc", 3)  # Valid-formatter is just accepted
+            "llc"
+
+            >>> _table_alignment("|ll|l|", 3)  # Separators are fine as-well
+            "|ll|l|"
+
+        fmt: Format string to apply to every element in the table data. Example: '.3f'.
+        indentation: Number of spaces used for environment indentation.
         booktabs: Use the booktabs module to neatly format the table.
-        midrule_condition: Callback to check for additional inserted midrules.
+        midrule_condition: Callback to check for additional inserted midrules. This
+            function is called with the current and previous row and should return a
+            boolean. If it returns True, a ``\midrule`` is applied after the current
+            row. Example:
+
+            >>> def second_elem_changed(row, last_row):
+                return row[1] != last_row[1]
+
+            Only valid with ``booktabs=True``.
 
     Returns:
         The latex table as formatted string.
@@ -75,11 +109,18 @@ def write(
 ) -> None:
     """Write python data to file as formatted latex table.
 
+    Calls :func:`tostring` to convert the data to a valid tex table passing any
+    additional keyword-arguments on. The retrieved string is then written to the file
+    passed.
+
     Args:
-        data: List of lists containing the rows and columns of the table.
+        data: Sequence of sequences containing the rows and columns of the table. Note
+            that the number of columns in each row must match.
         outfile: File to write the data to.
-        writemode: Writemode to use when opening the file.
-        kwargs: Arguments passed to :func:`tostring`.
+        writemode: Writemode to use when opening the file. Note that the mode must
+            support writing, passing ``r`` will fail horribly for obvious reasons. This
+            argument exists to give the option to append to a file with ``a``.
+        kwargs: Keyword arguments for additional formatting passed to :func:`tostring`.
     """
     with open(outfile, writemode) as f:
         f.write(tostring(data, **kwargs))
@@ -186,24 +227,7 @@ def _wrap_tex_environment(
 def _table_alignment(alignment: str, n_columns: int) -> str:
     """Return a valid latex tabular alignment string.
 
-    Examples:
-        >>> _table_alignment("", 3)
-        "ccc"
-
-        >>> _table_alignment("l", 3)
-        "lll"
-
-        >>> _table_alignment("llc", 3)
-        "llc"
-
-        >>> _table_alignment("l|", 3)
-        "l|l|l"
-
-        >>> _table_alignment("|l|", 3)
-        "|l|l|l|"
-
-        >>> _table_alignment("|ll|l|", 3)
-        "|ll|l|"
+    See :func:`write` vor valid examples.
 
     Args:
         alignment: Simplified string converted to the full table alignment.
