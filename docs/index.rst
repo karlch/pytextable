@@ -30,6 +30,7 @@ Contents
 
     usage
     api
+    changelog
 
 
 License
