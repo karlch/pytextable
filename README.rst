@@ -87,7 +87,8 @@ Example
 Links
 -----
 
-* `Read the full documentation here <https://pytextable.readthedocs.io/en/latest>`_.
+* `Read the full documentation <https://pytextable.readthedocs.io/en/latest>`_.
+* `View the changelog <https://pytextable.readthedocs.io/en/latest/changelog.html>`_.
 
 
 License
