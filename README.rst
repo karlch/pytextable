@@ -9,6 +9,9 @@ pytextable - create latex tables using pure python
 .. image:: https://github.com/karlch/pytextable/workflows/CI/badge.svg
    :target: https://github.com/karlch/pytextable/actions
    :alt: CI
+.. image:: https://codecov.io/github/karlch/pytextable/coverage.svg?branch=master
+   :target: https://codecov.io/github/karlch/pytextable?branch=master
+   :alt: Codecov
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/ambv/black
    :alt: Code style: black
