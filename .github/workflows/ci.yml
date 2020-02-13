@@ -23,7 +23,14 @@ jobs:
         pip install tox
     - name: Test with tox
       run: |
-        tox -e test
+        tox -e test-cov
+    - name: Upload coverage to codecov
+      run: |
+        pip install codecov
+        codecov -X gcov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      if: matrix.python-version == 3.8
 
   lint:
 
