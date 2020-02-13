@@ -81,6 +81,12 @@ Example
     >>> pytextable.write(DATA, "table.tex", fmt=".3f", ...)
 
 
+Links
+-----
+
+* `Read the full documentation here <https://pytextable.readthedocs.io/en/latest>`_.
+
+
 License
 -------
 
