@@ -11,4 +11,4 @@ __email__ = "karlch@protonmail.com"
 __description__ = "Utilities to convert python data to latex tables."
 
 
-from ._textable import tostring, write, DataT, RowT, HeaderT, MidruleCallbackT
+from ._pytextable import tostring, write, DataT, RowT, HeaderT, MidruleCallbackT

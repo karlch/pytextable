@@ -1,12 +1,12 @@
 # vim: ft=python fileencoding=utf-8 sw=4 et sts=4
 
-"""Integration tests for textable."""
+"""Integration tests for pytextable."""
 
 import os
 
 import pytest
 
-import textable
+import pytextable
 
 
 DATA = [[1.2346, 1, 1.2346], [1.2346, 1.2346, 1.2346], [1.2346, 1.2346, 1.2346]]
@@ -35,7 +35,7 @@ FILE_TO_KWARGS = {
 
 
 @pytest.mark.parametrize("infile, kwargs", FILE_TO_KWARGS.items())
-def test_textable(tmpdir, infile, kwargs):
+def test_pytextable(tmpdir, infile, kwargs):
 
     dirname = os.path.dirname(os.path.realpath(__file__))
     infile = os.path.join(dirname, "data", infile)
@@ -45,5 +45,5 @@ def test_textable(tmpdir, infile, kwargs):
             return f.read()
 
     outfile = tmpdir.join("output.tex")
-    textable.write(DATA, outfile, **kwargs)
+    pytextable.write(DATA, outfile, **kwargs)
     assert read_bytes(infile) == read_bytes(outfile)

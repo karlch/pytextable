@@ -21,7 +21,7 @@ def read_file(filename):
 def read_from_init(name):
     """Read value of a __magic__ value from the __init__.py file."""
     field_re = re.compile(r"__{}__\s+=\s+(.*)".format(re.escape(name)))
-    path = os.path.join(BASEDIR, "textable", "__init__.py")
+    path = os.path.join(BASEDIR, "pytextable", "__init__.py")
     line = field_re.search(read_file(path)).group(1)
     return ast.literal_eval(line)
 
@@ -30,7 +30,7 @@ setuptools.setup(
     python_requires=">=3.6",
     install_requires=[],
     packages=setuptools.find_packages(),
-    name="textable",
+    name="pytextable",
     version=".".join(str(num) for num in read_from_init("version_info")),
     description=read_from_init("description"),
     author=read_from_init("author"),
