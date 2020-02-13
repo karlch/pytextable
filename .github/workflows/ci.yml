@@ -24,3 +24,25 @@ jobs:
     - name: Test with tox
       run: |
         tox -e test
+
+  lint:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toxenv: [lint, mypy, packaging]
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up python3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install tox
+    - name: Test with tox
+      run: |
+        tox -e ${{ matrix.toxenv }}
