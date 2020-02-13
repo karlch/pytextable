@@ -19,7 +19,7 @@ First, you have to get the source code::
     git clone https://github.com/karlch/pytextable
 
 Then, switch to the repository::
-    
+
     cd pytextable
 
 And run::

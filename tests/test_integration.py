@@ -30,7 +30,7 @@ FILE_TO_KWARGS = {
         "header": ("first", "second", "third"),
     },
     "midrule_for_one.tex": {"midrule_condition": midrule_for_one},
-    "nocentering.tex": {"centering": False}
+    "nocentering.tex": {"centering": False},
 }
 
 
