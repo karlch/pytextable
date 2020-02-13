@@ -36,6 +36,7 @@ setuptools.setup(
     long_description=read_file(os.path.join(BASEDIR, "README.rst")),
     author=read_from_init("author"),
     author_email=read_from_init("email"),
+    url=read_from_init("url"),
     license=read_from_init("license"),
     keywords=["latex", "tables", "data"],
     zip_safe=True,

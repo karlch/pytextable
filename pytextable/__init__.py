@@ -9,6 +9,7 @@ __author__ = "Christian Karl"
 __maintainer__ = __author__
 __email__ = "karlch@protonmail.com"
 __description__ = "Utilities to convert python data to latex tables."
+__url__ = "https://github.com/karlch/pytextable"
 
 
 from ._pytextable import tostring, write, DataT, RowT, HeaderT, MidruleCallbackT
