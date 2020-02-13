@@ -33,6 +33,7 @@ setuptools.setup(
     name="pytextable",
     version=".".join(str(num) for num in read_from_init("version_info")),
     description=read_from_init("description"),
+    long_description=read_file(os.path.join(BASEDIR, "README.rst")),
     author=read_from_init("author"),
     author_email=read_from_init("email"),
     license=read_from_init("license"),
