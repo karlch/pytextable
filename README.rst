@@ -1,6 +1,10 @@
 pytextable - create latex tables using pure python
 ==================================================
 
+.. image:: https://github.com/karlch/pytextable/workflows/CI/badge.svg
+   :target: https://github.com/karlch/pytextable/actions
+   :alt: CI
+
 **pytextable** creates well-formatted latex tables with booktabs support in pure python.
 
 **pytextable** is highly-configurable, you decide how your table should look.
