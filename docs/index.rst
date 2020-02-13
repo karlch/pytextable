@@ -29,6 +29,7 @@ Contents
 .. toctree::
 
     usage
+    contributing
     api
     changelog
 
