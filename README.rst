@@ -1,11 +1,6 @@
 pytextable - create latex tables using pure python
 ==================================================
 
-.. warning::
-
-    pytextable is not yet available on PyPI but v0.1.0 should be out very soon,
-    stay tuned!
-
 .. image:: https://github.com/karlch/pytextable/workflows/CI/badge.svg
    :target: https://github.com/karlch/pytextable/actions
    :alt: CI
