@@ -72,13 +72,14 @@ def tostring(
         booktabs: Use the booktabs module to neatly format the table.
         midrule_condition: Callback to check for additional inserted midrules. This
             function is called with the current and previous row and should return a
-            boolean. If it returns True, a ``\midrule`` is applied after the current
+            boolean. If it returns True, a ``\midrule`` is applied before the current
             row. Example:
 
             >>> def second_elem_changed(row, last_row):
                 return row[1] != last_row[1]
 
-            Only valid with ``booktabs=True``.
+            This is useful to separate the current row from the previous one in case
+            something changed. Only valid with ``booktabs=True``.
 
     Returns:
         The latex table as formatted string.
@@ -169,7 +170,7 @@ def _create_table_rows(
     for elem in data:
         row = create_row(elem)
         if midrule_condition(elem, last_elem):
-            row += "\n\\midrule"
+            row = "\n\\midrule\n" + row
         rows.append(row)
         last_elem = elem
     rowstr = "\n".join(rows)

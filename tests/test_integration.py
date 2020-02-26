@@ -12,8 +12,8 @@ import pytextable
 DATA = [[1.2346, 1, 1.2346], [1.2346, 1.2346, 1.2346], [1.2346, 1.2346, 1.2346]]
 
 
-def midrule_for_one(rows, _last_rows):
-    return 1 in rows
+def midrule_row_changed(row, last_row):
+    return row != last_row
 
 
 FILE_TO_KWARGS = {
@@ -29,7 +29,7 @@ FILE_TO_KWARGS = {
         "booktabs": False,
         "header": ("first", "second", "third"),
     },
-    "midrule_for_one.tex": {"midrule_condition": midrule_for_one},
+    "midrule_row_changed.tex": {"midrule_condition": midrule_row_changed},
     "nocentering.tex": {"centering": False},
 }
 
