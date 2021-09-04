@@ -14,6 +14,8 @@ Changed:
   instead of appended. This makes more sense as we can check if the current row is
   different from the previous one. If so, we want to separate the current row from the
   previous row, not the current row from the next one.
+* New ``encoding`` keyword argument for the ``write`` function. The default of ``utf-8``
+  is sane and works well with latex code using ``\usepackage[utf8]{inputenc}``.
 
 
 

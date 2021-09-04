@@ -106,9 +106,14 @@ def tostring(
 
 
 def write(
-    data: DataT, outfile: str, *, writemode: str = "w", **kwargs: typing.Any
+    data: DataT,
+    outfile: str,
+    *,
+    writemode: str = "w",
+    encoding: str = "utf-8",
+    **kwargs: typing.Any,
 ) -> None:
-    """Write python data to file as formatted latex table.
+    r"""Write python data to file as formatted latex table.
 
     Calls :func:`tostring` to convert the data to a valid tex table passing any
     additional keyword-arguments on. The retrieved string is then written to the file
@@ -121,9 +126,11 @@ def write(
         writemode: Writemode to use when opening the file. Note that the mode must
             support writing, passing ``r`` will fail horribly for obvious reasons. This
             argument exists to give the option to append to a file with ``a``.
+        encoding: Encoding to use when opening the file. The default of ``utf-8`` works
+            well with latex code using ``\usepackage[utf8]{inputenc}``.
         kwargs: Keyword arguments for additional formatting passed to :func:`tostring`.
     """
-    with open(outfile, writemode) as f:
+    with open(outfile, writemode, encoding=encoding) as f:
         f.write(tostring(data, **kwargs))
 
 
