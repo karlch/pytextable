@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to pytextable are documented in this file.
 
+
+v0.3.0 (unreleased)
+-------------------
+
+
 v0.2.1 (2021-09-04)
 -------------------
 
